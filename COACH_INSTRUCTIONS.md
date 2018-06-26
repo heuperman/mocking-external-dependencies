@@ -33,9 +33,9 @@
 
 8. We should now have a failing test, but it's not quite complete. We can also see from the domain model that `Greeter` will call two methods on the Twilio client when send_message is called. So let's mock these methods on the `twilio_client` double using the `allow` syntax.
 
-  - `messages` needs to return the twilio_client when it's called, so that create can be called.
+  - `messages` needs to return the something when it's called, so that create can be called. Let's get the `twilio_client` to return a `messages_client` double when `messages` is called.
 
-  - `create` will be called with an argument - a `config` hash, and it should return something called `Message`.
+  - `create` will be called on the `messages_client` with an argument - a `config` hash, and it should return something called `Message`.
 
   >Hint: It's a good idea to check the format and contents of `config` in the Twilio docs,
 
