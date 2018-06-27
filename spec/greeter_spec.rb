@@ -2,7 +2,10 @@ require 'greeter'
 
 describe Greeter do
   let(:message) { double(:message) }
-  
+  let(:twilio_client) { double(:twilio_client) }
+
+  subject { described_class.new(twilio_client) }
+
   describe '#message' do
     it 'returns the greeting message' do
       expect(subject.message).to eq 'Have a great day!'
