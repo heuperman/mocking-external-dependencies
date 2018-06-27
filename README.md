@@ -48,12 +48,10 @@ Have a great day!
 4. You should now have a failing test, but it's not quite complete. You'll need to double the Twilio client in order to write the tests we require for TDD. Create a double of the `twilio_client`, update your `Greeter` tests so that this mock is injected into the `Greeter` class (this will break your passing test).
 
 5. Update the `Greeter` class to take the injected `twilio_client`.
-
-Now you have a `twilio_client` double available, you can write the tests that will drive the development of sending a text message. The domain model indicates that the `Greeter` will call two methods on the `twilio_client`, let's mock these interactions one at a time, using `allow` in Rspec:
+>Now you have a `twilio_client` double available, you can write the tests that will drive the development of sending a text message. The domain model indicates that the `Greeter` will call two methods on the `twilio_client`, let's mock these interactions one at a time, using `allow` in Rspec:
 ```
 allow(double).to receive(:method_name).with(args).and_return(return_value)
 ```
->Hint: the .with and .and_return methods are optional
 
 6. Allow the `twilio_client` to receive the `messages` method and return a new double, `messages_client`
 >Question: Why does the messages method need to return another double?
@@ -66,17 +64,16 @@ allow(double).to receive(:method_name).with(args).and_return(return_value)
     ```
       export TWILIO_PHONE_NUMBER=yourtwilionumber
     ```
-  - To access an environment variable and set to a constant
+  - To access an environment variable and set to a constant in Greeter:
     ```
       CONFIGURATION = {
-        from: ENV[:TWILIO_PHONE_NUMBER]
+        from: ENV['TWILIO_PHONE_NUMBER']
       }
     ```
     Once the configuration constant has been set, you can access this in your tests!
 
 9. Finally, you have a test we can use to implement Twilio integration! Use the error messages from the failing test to test-drive your development to Green.
-
-You have passing tests, but what will happen when you try to send the message to your number? The tests give us confidence that you are interacting with the Twilio client in line with documentation, so it's time to set up the real thing.
+>You have passing tests, but what will happen when you try to send the message to your number? The tests give us confidence that you are interacting with the Twilio client in line with documentation, so it's time to set up the real thing.
 
 10. Set up the ENV values for the other sensitive data required by the Twilio client (see the Quickstart documentation for more information), and add these to your `Greeter::CONFIGURATION` hash.
 
