@@ -1,9 +1,16 @@
+require 'twilio-ruby'
+
 class Greeter
   CONFIGURATION = {
-    from: ENV['TWILIO_PHONE_NUMBER']
+    from: ENV['TWILIO_PHONE_NUMBER'],
+    account_sid: ENV['TWILIO_ACCOUNT_SID'],
+    auth_token: ENV['TWILIO_AUTH_TOKEN']
   }
 
-  def initialize(client)
+  def initialize(client = Twilio::REST::Client.new(
+    CONFIGURATION[:account_sid],
+    CONFIGURATION[:auth_token]
+  ))
     @client = client
   end
 
