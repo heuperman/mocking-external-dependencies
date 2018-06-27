@@ -16,8 +16,10 @@ describe Greeter do
   describe '#send_message' do
     it 'returns a message' do
       recipient = "+44476532212"
-      
-      allow(twilio_client).to receive(:messages).and_return(messages_client)
+      message_config = {}
+
+      allow(twilio_client).to receive(:messages).and_return messages_client
+      allow(messages_client).to receive(:create).with(message_config).and_return message
 
       expect(subject.send_message(recipient)).to eq message
     end
