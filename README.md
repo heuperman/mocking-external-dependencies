@@ -1,6 +1,6 @@
 # Mocking External Dependencies
 
-Short exercise to test drive code when you have an external dependency. Build an app that sends a short greeting using the Twilio API.
+A short exercise to test drive code when you have an external dependency. Build an app that sends a short greeting using the Twilio API.
 
 ## User Stories
 
@@ -74,18 +74,17 @@ allow(double).to receive(:method_name).with(args).and_return(return_value)
     ```
     Once the configuration constant has been set, you can access this in your tests!
 
-7. Finally, you have a test we can use to implement Twilio integration! Use the error messages from the failing test to test-drive your development to Green.
+9. Finally, you have a test we can use to implement Twilio integration! Use the error messages from the failing test to test-drive your development to Green.
 
 You have passing tests, but what will happen when you try to send the message to your number? The tests give us confidence that you are interacting with the Twilio client in line with documentation, so it's time to set up the real thing.
 
-8. Set up the ENV values for the other sensitive data required by the Twilio client (see the Quickstart documentation for more information)
+10. Set up the ENV values for the other sensitive data required by the Twilio client (see the Quickstart documentation for more information), and add these to your `Greeter::CONFIGURATION` hash.
 
-10. Now, update your code to use dependency injection to inject the Twilio client, and make sure it is set up using the config as per the documentation.
+11. Now, update your code to use dependency injection to inject the Twilio client, and make sure it is set up using the config as per the documentation.
 
-Check that your tests still pass, then try sending the greeting message to your own number! (See the `example-code` branch README for an example interaction)
-
+**Check that your tests still pass, then try sending the greeting message to your own number! (See the `example-code` branch README for an example interaction)**
 
 ### Useful links
 
 - [Twilio Quick Start](https://www.twilio.com/docs/sms/quickstart/ruby)
-- [`allow` in Rspec]()
+- [Relish documentation on Mocks](https://relishapp.com/rspec/rspec-mocks/v/3-7/docs/basics)
